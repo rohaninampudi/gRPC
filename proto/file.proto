@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+service FileAction{
+  rpc Upload(stream Chunk) returns (Reply){}
+
+}
+
+message Chunk{      // streams file
+  bytes buffer = 1;
+}
+
+message Reply{        // returns size of file uploaded
+  int32 length = 1;
+}

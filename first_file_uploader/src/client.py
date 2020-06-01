@@ -6,7 +6,7 @@ import os
 
 
 # open a gRPC channel
-channel = grpc.insecure_channel('localhost:50061')
+channel = grpc.insecure_channel('localhost:50051')
 
 # create a stub (client)
 stub = file_pb2_grpc.FileActionStub(channel)

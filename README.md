@@ -1,20 +1,27 @@
 # gRPC file uploader instructions:
+    USE THE PROJECT IN "new_file_uploader"
+    
+    Change directory to "proto" before executing the statement below
+    
     Use the following command to create the pb2 files:
 
-    python -m grpc_tools.protoc -I. --python_out=../src --grpc_python_out=../src ./file.proto
+        python -m grpc_tools.protoc -I. --python_out=../src --grpc_python_out=../src ./file_chunk.proto
 
-    Run server.py
-
-    Run client.py
+    Change directory to "src" to run the server and client
+    
+        python server.py
+    
+        python client.py
 
 
 # What the program does:
     The client passes the contents of "upload_this_file.txt" to the server and the server will upload it.
 
     To prove that it has been uploaded, the server should create a another file named "temp_file.txt"
+    Server will also return the size of file to validate.
 
 
-# There is a bug
+# This is the bug in the first_file_uploader project (i'm not sure how to fix)
     Currently there is a bug when running the client (shown below):
 
 
@@ -29,3 +36,6 @@
         status = StatusCode.UNKNOWN
         details = "Exception calling application: 'FileServicer' object has no attribute 'tmp_file_name'"
         debug_error_string = "{"created":"@1590898466.709939000","description":"Error received from peer ipv6:[::1]:50061","file":"src/core/lib/surface/call.cc","file_line":1056,"grpc_message":"Exception calling application: 'FileServicer' object has no attribute 'tmp_file_name'","grpc_status":2}"
+
+
+#Because of this bug make sure to use the "new_file_uploader"

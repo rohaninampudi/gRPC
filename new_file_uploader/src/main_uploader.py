@@ -35,21 +35,20 @@ class Client:
 
 class ServerForFile(file_chunk_pb2_grpc.FileUploaderServicer):
     def __init__(self):
-        class Server(file_chunk_pb2_grpc.FileUploaderServicer):
-            def __init__(self):
-                self.temp_file = "temp_file.txt"
+        self.temp_file = "temp_file.txt"
 
-            def upload(self, request_iterator, context):
-                save_to_file(request_iterator, self.temp_file)
-                size_of_file = os.path.getsize(self.temp_file)
-                print("SERVER_REPLY(size of file):", size_of_file)
-                print("Check folder for temp_file.txt. This is a replica of the the text file passed in by the client. \n")
-                return file_chunk_pb2.Reply(length=os.path.getsize(self.temp_file))
-
-        self.server = grpc.server(futures.ThreadPoolExecutor(max_workers=1))
-        file_chunk_pb2_grpc.add_FileUploaderServicer_to_server(Server(), self.server)
+    def upload(self, request_iterator, context):
+        save_to_file(request_iterator, self.temp_file)
+        size_of_file = os.path.getsize(self.temp_file)
+        print("SERVER_REPLY(size of file):", size_of_file)
+        print(
+            "Check folder for temp_file.txt. This is a replica of the the text file passed in by the client. \n")
+        return file_chunk_pb2.Reply(length=os.path.getsize(self.temp_file))
 
     def startServer(self):
+
+        self.server = grpc.server(futures.ThreadPoolExecutor(max_workers=1))
+        file_chunk_pb2_grpc.add_FileUploaderServicer_to_server(ServerForFile(), self.server)
 
         print('Starting server. Listening on port 8888.\n')
         self.server.add_insecure_port('[::]:8888')

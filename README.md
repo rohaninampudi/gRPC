@@ -9,9 +9,11 @@
 
     Change directory to "src" to run the server and client
     
-        python server.py
+        python test_server.py
+        
+        OPEN a new terminal then run the client:
     
-        python client.py
+        python test_client.py
 
 
 # What the program does:

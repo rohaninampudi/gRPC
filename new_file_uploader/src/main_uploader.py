@@ -47,15 +47,15 @@ class ServerForFile(file_chunk_pb2_grpc.FileUploaderServicer):
 
     def startServer(self):
 
-        self.server = grpc.server(futures.ThreadPoolExecutor(max_workers=1))
-        file_chunk_pb2_grpc.add_FileUploaderServicer_to_server(ServerForFile(), self.server)
+        server = grpc.server(futures.ThreadPoolExecutor(max_workers=1))
+        file_chunk_pb2_grpc.add_FileUploaderServicer_to_server(ServerForFile(), server)
 
         print('Starting server. Listening on port 8888.\n')
-        self.server.add_insecure_port('[::]:8888')
-        self.server.start()
+        server.add_insecure_port('[::]:8888')
+        server.start()
 
         try:
             while True:
                 time.sleep(86400)
         except KeyboardInterrupt:
-            self.server.stop(0)
+            server.stop(0)

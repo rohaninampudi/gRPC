@@ -43,25 +43,25 @@
 # Because of this bug make sure to use the "new_file_uploader"
 
 
-## TODO
-  [] Final Backend server to be implemented in c++/golang
-     - Python is fine for initial version
-  [] Client component can be any lanugage python/c++/golan
+## TODO  
+  [] Final Backend server to be implemented in c++/golang  
+     - Python is fine for initial version  
+  [] Client component can be any lanugage python/c++/golang  
 
-## Flow
-  []  Client to send file data, filename, file checksum(sha1 value of content)
-  []  Server recieves, calculates sha1 value and compares with the sha1 recieved
-  []  test the flow with images and binary files
-  []  Bring seesions into flow. cleints start a session, server responds with session id. 
-      clients uses sessionid for further processing of api calls. 
-      client at the end closes the sessions.
-      expiry of each session.
+## Flow  
+  []  Client to send file data, filename, file checksum(sha1 value of content)  
+  []  Server recieves, calculates sha1 value and compares with the sha1 recieved  
+  []  test the flow with images and binary files  
+  []  Bring seesions into flow. cleints start a session, server responds with session id.   
+      clients uses sessionid for further processing of api calls.   
+      client at the end closes the sessions.  
+      expiry of each session.  
       
-## Inference flow
-  - create session -
-  - send image / model file 
-  - infer image
-  - get inference result
-  - repeat 
-  - close session
+## Inference flow  
+  - create session -  
+  - send image / model file   
+  - infer image  
+  - get inference result  
+  - repeat   
+  - close session  
   

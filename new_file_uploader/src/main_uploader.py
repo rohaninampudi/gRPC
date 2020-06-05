@@ -21,7 +21,6 @@ def save_to_file(chunks, file_name):
         for chunk in chunks:
             file.write(chunk.buffer)
 
-
 class Client:
     def __init__(self, client_address):
         channel = grpc.insecure_channel(client_address)
@@ -30,6 +29,9 @@ class Client:
     def upload(self, file_name):
         generator_of_chunks = file_chunker(file_name)
         response = self.stub.upload(generator_of_chunks)
+        print("SERVER_REPLY(size of file):", response)
+        print(
+            "Check folder for temp_file.txt. This is a replica of the the text file passed in by the client. \n")
         assert response.length == os.path.getsize(file_name)
 
 
@@ -40,9 +42,6 @@ class ServerForFile(file_chunk_pb2_grpc.FileUploaderServicer):
     def upload(self, request_iterator, context):
         save_to_file(request_iterator, self.temp_file)
         size_of_file = os.path.getsize(self.temp_file)
-        print("SERVER_REPLY(size of file):", size_of_file)
-        print(
-            "Check folder for temp_file.txt. This is a replica of the the text file passed in by the client. \n")
         return file_chunk_pb2.Reply(length=os.path.getsize(self.temp_file))
 
     def startServer(self):

@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=b'\n\nsha1.proto\".\n\x08\x46ileData\x12\x10\n\x08\x66ilename\x18\x01 \x01(\t\x12\x10\n\x08sha1_val\x18\x02 \x01(\t\"G\n\x06Result\x12\x0e\n\x06result\x18\x01 \x01(\x05\x12\x14\n\x0c\x63orrect_sha1\x18\x02 \x01(\t\x12\x17\n\x0f\x63\x61lculated_sha1\x18\x03 \x01(\t20\n\x0bSha1Checker\x12!\n\tCheckSha1\x12\t.FileData\x1a\x07.Result\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\nsha1.proto\".\n\x08\x46ileData\x12\x10\n\x08\x66ilename\x18\x01 \x01(\t\x12\x10\n\x08\x63hecksum\x18\x02 \x01(\t\"G\n\x06Result\x12\x0e\n\x06result\x18\x01 \x01(\x05\x12\x14\n\x0c\x63orrect_sha1\x18\x02 \x01(\t\x12\x17\n\x0f\x63\x61lculated_sha1\x18\x03 \x01(\t20\n\x0bSha1Checker\x12!\n\tCheckSha1\x12\t.FileData\x1a\x07.Result\"\x00\x62\x06proto3'
 )
 
 
@@ -39,7 +39,7 @@ _FILEDATA = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='sha1_val', full_name='FileData.sha1_val', index=1,
+      name='checksum', full_name='FileData.checksum', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,

@@ -15,7 +15,7 @@ class Sha1CheckerServicer(sha1_pb2_grpc.Sha1CheckerServicer):
 
     def CheckSha1(self, request, context):
         response = sha1_pb2.Result()
-        response.result, response.correct_sha1, response.calculated_sha1 = sha1_calculator.calculate_and_compare_sha1(request.filename, request.sha1_val)
+        response.result, response.correct_sha1, response.calculated_sha1 = sha1_calculator.calculate_and_compare_sha1(request.filename, request.checksum)
         return response
 
 

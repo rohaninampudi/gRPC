@@ -3,7 +3,7 @@ syntax = "proto3";
 // client will pass a number
 message FileData{
   string filename = 1;
-  string sha1_val = 2;
+  string checksum = 2;
 }
 
 message Result{

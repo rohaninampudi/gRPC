@@ -12,7 +12,7 @@ stub = sha1_pb2_grpc.Sha1CheckerStub(channel)
 
 # create a valid request message
 
-inputData = sha1_pb2.FileData(filename="src/.txt_files/convert_to_sha1.txt", sha1_val="src/.txt_files/sha1_val.txt")
+inputData = sha1_pb2.FileData(filename=".txt_files/convert_to_sha1.txt", checksum=".txt_files/sha1_val.txt")
 
 # make the call
 response = stub.CheckSha1(inputData)

@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+// client will pass a number
+message FileData{
+  string filename = 1;
+  string checksum = 2;
+}
+
+message Result{
+  int32 result = 1; //output zero or one
+  string correct_sha1 = 2;
+  string calculated_sha1 = 3;
+}
+
+message Chunk{
+  bytes buffer = 1;
+}
+
+message Reply{
+  int32 length = 1;
+}
+// service will output the square root
+service Sha1Checker{
+  rpc upload(stream Chunk) returns (Reply){}
+  rpc CheckSha1(FileData) returns (Result){}
+}
+
+/* terminal calls:
+$ pip install grpcio
+$ pip install grpcio-tools
+
+$ python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. sha1.proto
+
+ Creates calculator_pb2.py - contains message classes
+      - calculator_pb2.Number
+
+ calculator_pb2_grpc.py - contains server and client classes
+    calculator_pb2_grpc.CalculatorServicer for server
+    calculator_pb2_grpc.CalculatorStub for the client
+
+
+
+ */
+
